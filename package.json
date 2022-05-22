@@ -1,16 +1,17 @@
 {
   "name": "monty",
   "version": "0.0.1",
-  "description": "Mortimer is a discord bot that helps you build and monitor your discord community in one click.",
+  "description": "Monty is a discord bot that helps you build and monitor your discord community in one click.",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix --ext .js,.jsx ."
+    "lint:fix": "eslint --fix --ext .js,.jsx .",
+    "develop": "nodemon ./src/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FaizChishtie/morty.git"
+    "url": "git+https://github.com/FaizChishtie/monty.git"
   },
   "keywords": [
     "discord",
@@ -20,17 +21,24 @@
   "author": "Faizaan Chishtie <faizchishtie@gmail.com> (https://github.com/FaizChishtie)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/FaizChishtie/morty/issues"
+    "url": "https://github.com/FaizChishtie/monty/issues"
   },
-  "homepage": "https://github.com/FaizChishtie/morty#readme",
+  "homepage": "https://github.com/FaizChishtie/monty#readme",
   "dependencies": {
-    "@discordjs/builders": "discordjs/builders",
+    "@discordjs/builders": "^0.13.0",
     "@discordjs/rest": "^0.4.1",
     "discord-api-types": "^0.33.0",
     "discord.js": "^13.7.0",
     "dotenv": "^16.0.1"
   },
   "devDependencies": {
-    "eslint": "^8.15.0"
+    "@commitlint/config-angular": "^17.0.0",
+    "@commitlint/config-conventional": "^17.0.0",
+    "eslint": "^8.15.0",
+    "husky": "^8.0.1",
+    "nodemon": "^2.0.16"
+  },
+  "nodemonConfig": {
+    "ignore": ["src/deploy/*"]
   }
 }
