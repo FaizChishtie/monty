@@ -6,15 +6,15 @@ const Role = require('../class/Role');
 const template = new Template('default', 'Default community template.');
 
 const coolChannel = new Channel('Cool Channel', 'text');
-const voiceChannel = new Channel('Table Tennis Room', 'voice');
+const voiceChannel = new Channel('Table Tennis Room Clone', 'voice');
 const protectedChannel = new Channel('Protected Channel', 'text', true);
 
 // add channels
 
 template.addChannels([
-    coolChannel, 
-    voiceChannel, 
-    protectedChannel
+	coolChannel,
+	voiceChannel,
+	protectedChannel,
 ]);
 
 // add roles
@@ -30,9 +30,9 @@ template.addRole(montyRole);
 const montyCategory = new Category('Monty Generated');
 
 montyCategory.addChannels([
-    coolChannel, 
-    voiceChannel, 
-    protectedChannel
+	coolChannel,
+	voiceChannel,
+	protectedChannel,
 ]);
 
 template.addCategory(montyCategory);

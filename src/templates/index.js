@@ -13,4 +13,6 @@ for (const file of templateFiles) {
 	templates.push(template);
 }
 
+// todo: make template folder external
+
 module.exports = templates;

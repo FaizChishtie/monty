@@ -1,6 +1,22 @@
+const Template = require('../templates/class/Template');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 const templates = require('../templates');
+
+const templateChoices = [];
+const templateMap = new Map();
+
+templates.forEach(template => {
+	const name = template.name;
+
+	const choice = {
+		name: name,
+		value: name,
+	};
+
+	templateChoices.push(choice);
+	templateMap.set(name, template);
+});
 
 const buildCommand = new SlashCommandBuilder()
 	.setName('build')
@@ -9,11 +25,8 @@ const buildCommand = new SlashCommandBuilder()
 		option.setName('template')
 			.setDescription('The template your server will be built with.')
 			.setRequired(true)
-			.addChoices({
-                name: templates[0].name,
-                value: `~${templates[0].name}`
-            })
-    );
+			.addChoices(...templateChoices),
+	);
 
 const reply = async (interaction, template) => {
 	await interaction.reply(`Building server for ${interaction.guild.name} with template: ${template}`);
@@ -23,16 +36,22 @@ const close = async (interaction, template) => {
 	await interaction.followUp(`Built ${interaction.guild.name} with template: ${template}`);
 };
 
+const buildFromTemplate = async (interaction, template) => {
+	const { guild } = interaction;
+	await Template.buildTemplate(template, guild);
+};
+
 module.exports = {
 	data: buildCommand,
 	async execute(interaction) {
-		const selectedTemplate = interaction.options.getString('template');
+		const selectedTemplateString = interaction.options.getString('template');
 
-		await reply(interaction, selectedTemplate);
+		await reply(interaction, selectedTemplateString);
 
-        console.log(templates[0].name);
-        console.log(selectedTemplate);
+		const selectedTemplate = templateMap.get(selectedTemplateString);
 
-		await close(interaction, selectedTemplate);
+		await buildFromTemplate(interaction, selectedTemplate);
+
+		await close(interaction, selectedTemplateString);
 	},
 };
