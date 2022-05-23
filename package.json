@@ -4,7 +4,9 @@
   "description": "Monty is a discord bot that helps you build and monitor your discord community in one click.",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "yarn corde; mocha",
+    "test:discord": "yarn corde",
+    "test:js": "mocha",
     "lint": "eslint .",
     "lint:fix": "eslint --fix --ext .js,.jsx .",
     "develop": "nodemon ./src/index.js"
@@ -34,11 +36,14 @@
   "devDependencies": {
     "@commitlint/config-angular": "^17.0.0",
     "@commitlint/config-conventional": "^17.0.0",
+    "corde": "^4.4.7",
     "eslint": "^8.15.0",
     "husky": "^8.0.1",
     "nodemon": "^2.0.16"
   },
   "nodemonConfig": {
-    "ignore": ["src/deploy/*"]
+    "ignore": [
+      "src/deploy/*"
+    ]
   }
 }
