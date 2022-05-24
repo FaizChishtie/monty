@@ -1,26 +1,21 @@
-const util = require('./util');
+const Category = require('./Category');
+const Channel = require('./Channel');
+const Role = require('./Role');
+const templateUtil = require('./templateUtil');
 
 class Template {
 	constructor(name, description) {
 		this.name = name;
 		this.description = description;
 
-		// Array<Channel>
 		this.channels = [];
-		// Array<Category>
 		this.categories = [];
-		// Array<Role>
 		this.roles = [];
 	}
 
 	addChannel(channel) {
-		this.channels.push(channel);
-
-		// if (this.#checkChannelType(channel)) {
-		//     this.channels.push(channel);
-		// } else {
-		//     throw new Error(`Invalid Channel type passed: ${JSON.stringify(channel)} is not of type Monty#Channel`);
-		// }
+		const castChannel = Channel.cast(channel);
+		this.channels.push(castChannel);
 	}
 
 	addChannels(channels) {
@@ -30,13 +25,8 @@ class Template {
 	}
 
 	addCategory(category) {
-		this.categories.push(category);
-
-		// if (this.#checkCategoryType(category)) {
-		//     this.categories.push(category);
-		// } else {
-		//     throw new Error(`Invalid Category type passed: ${category} is not of type Monty#Category`);
-		// }
+		const castCategory = Category.cast(category);
+		this.categories.push(castCategory);
 	}
 
 	addCategories(categories) {
@@ -46,7 +36,8 @@ class Template {
 	}
 
 	addRole(role) {
-		this.roles.push(role);
+		const castRole = Role.cast(role);
+		this.roles.push(castRole);
 	}
 
 	addRoles(roles) {
@@ -55,20 +46,12 @@ class Template {
 		}
 	}
 
-	// #checkChannelType (channel) {
-	//     return typeof channel === 'Channel';
-	// }
-
-	// #checkCategoryType (category) {
-	//     return typeof category === 'Category';
-	// }
-
 	static async buildTemplate(template, guild) {
 		// Takes a template: Template and translates it to a discord sub command.
 
 		// create roles
 		for (const role of template.roles) {
-			await util.role.createRole(role, guild);
+			await templateUtil.role.createRole(role, guild);
 		}
 
 		// create channels
@@ -76,26 +59,26 @@ class Template {
 			if (channel.type === 'voice') {
 				// voice channel
 				if (channel.isProtected) {
-					await util.channel.createPrivateVoiceChannel(channel, guild);
+					await templateUtil.channel.createPrivateVoiceChannel(channel, guild);
 				}
 				else {
-					await util.channel.createVoiceChannel(channel, guild);
+					await templateUtil.channel.createVoiceChannel(channel, guild);
 				}
 			}
 			else {
 				// text channel
 				if (channel.isProtected) {
-					await util.channel.createPrivateTextChannel(channel, guild);
+					await templateUtil.channel.createPrivateTextChannel(channel, guild);
 				}
 				else {
-					await util.channel.createTextChannel(channel, guild);
+					await templateUtil.channel.createTextChannel(channel, guild);
 				}
 			}
 		}
 
 		// create categories and assign channels to category
 		for (const category of template.categories) {
-			await util.category.createCategory(category, guild);
+			await templateUtil.category.createCategory(category, guild);
 		}
 
 	}

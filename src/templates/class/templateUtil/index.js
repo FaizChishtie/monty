@@ -28,20 +28,21 @@ const createCategory = async (category, guild, reason = 'Monty created a new cat
 
 	for (const channel of category.channels) {
 		const foundChannel = guild.channels.cache.find(c => {
-            let channelString = channel.name;
+			let channelString = channel.name;
 
-            if (channel.type === 'text') {
-                channelString = channel.name.toLowerCase().replace(' ', '-');
-            }
+			if (channel.type === 'text') {
+				channelString = channel.name.toLowerCase().replace(' ', '-');
+			}
 
-            return c.name === channelString
-        });
+			return c.name === channelString;
+		});
 
-        if (foundChannel) {
-            foundChannel.setParent(newCategory.id);
-        } else {
-            console.log(`Could not find channel ${channel}`)
-        }
+		if (foundChannel) {
+			foundChannel.setParent(newCategory.id);
+		}
+		else {
+			console.log(`Could not find channel ${channel}`);
+		}
 	}
 };
 
@@ -53,9 +54,9 @@ const createPrivateCategory = async (category, guild, reason = 'Monty created a 
 
 	for (const channel of category.channels) {
 		const foundChannel = guild.channels.cache.find(c => {
-            console.log(c);
-            return c.name === channel.name
-        });
+			console.log(c);
+			return c.name === channel.name;
+		});
 		foundChannel.setParent(privateCategory.id);
 	}
 };
@@ -64,7 +65,7 @@ const createRole = async (role, guild, reason = 'Monty created a new role for yo
 	const newRole = await guild.roles.create({
 		data: {
 			name: role.name,
-            color: 'RANDOM'
+			color: 'RANDOM',
 		},
 		reason: reason,
 	});
