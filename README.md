@@ -3,6 +3,8 @@ Monty is a discord bot that helps you build and monitor your discord community i
 
 ## Todo
 
+[Monty GitHub project]]([https://github.com/users/FaizChishtie/projects/1)
+
 - Verify guild `/build` command is only run once per guild with API check.
 
 ## Setup & Run
