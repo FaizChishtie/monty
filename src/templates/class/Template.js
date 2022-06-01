@@ -67,6 +67,7 @@ class Template {
 			}
 			else {
 				// text channel
+				/* eslint-disable no-lonely-if */
 				if (channel.isProtected) {
 					await templateUtil.channel.createPrivateTextChannel(channel, guild);
 				}

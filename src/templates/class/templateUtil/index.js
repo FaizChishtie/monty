@@ -1,9 +1,15 @@
+const logger = require('../../../logger');
+
 const createTextChannel = async (channel, guild, reason = 'Monty created a new text channel for you.') => {
 	const newChannel = await guild.channels.create(channel.name, { reason: reason });
+
+	logger.info(`New Text Channel created ${newChannel}`);
 };
 
 const createPrivateTextChannel = async (channel, guild, reason = 'Monty created a new private text channel for you.') => {
 	const newChannel = await guild.channels.create(channel.name, { reason: reason });
+
+	logger.info(`New Private Text Channel created ${newChannel}`);
 };
 
 const createVoiceChannel = async (channel, guild, reason = 'Monty created a new voice channel for you.') => {
@@ -11,6 +17,8 @@ const createVoiceChannel = async (channel, guild, reason = 'Monty created a new 
 		type: 'GUILD_VOICE',
 		reason: reason,
 	});
+
+	logger.info(`New Voice Channel created ${newChannel}`);
 };
 
 const createPrivateVoiceChannel = async (channel, guild, reason = 'Monty created a new private voice channel for you.') => {
@@ -18,6 +26,8 @@ const createPrivateVoiceChannel = async (channel, guild, reason = 'Monty created
 		type: 'GUILD_VOICE',
 		reason: reason,
 	});
+
+	logger.info(`New Private Voice Channel created ${newChannel}`);
 };
 
 const createCategory = async (category, guild, reason = 'Monty created a new category for you.') => {
@@ -41,13 +51,15 @@ const createCategory = async (category, guild, reason = 'Monty created a new cat
 			foundChannel.setParent(newCategory.id);
 		}
 		else {
-			console.log(`Could not find channel ${channel}`);
+			logger.error(`Could not find channel ${channel}`);
 		}
 	}
+
+	logger.info(`New Category created ${newCategory}`);
 };
 
 const createPrivateCategory = async (category, guild, reason = 'Monty created a new private category for you.') => {
-	const privateCategory = await guild.channels.create(category.name, {
+	const newCategory = await guild.channels.create(category.name, {
 		type: 'GUILD_CATEGORY',
 		reason: reason,
 	});
@@ -57,8 +69,10 @@ const createPrivateCategory = async (category, guild, reason = 'Monty created a 
 			console.log(c);
 			return c.name === channel.name;
 		});
-		foundChannel.setParent(privateCategory.id);
+		foundChannel.setParent(newCategory.id);
 	}
+
+	logger.info(`New Private Category created ${newCategory}`);
 };
 
 const createRole = async (role, guild, reason = 'Monty created a new role for you.') => {
@@ -69,6 +83,8 @@ const createRole = async (role, guild, reason = 'Monty created a new role for yo
 		},
 		reason: reason,
 	});
+
+	logger.info(`New Role created ${newRole}`);
 };
 
 module.exports = {

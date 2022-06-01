@@ -45,7 +45,7 @@ class Channel {
 
 		channel.addRoles(object.roles);
 
-		return channel;;
+		return channel;
 	}
 }
 
