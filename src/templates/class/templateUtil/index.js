@@ -76,15 +76,17 @@ const createPrivateCategory = async (category, guild, reason = 'Monty created a 
 };
 
 const createRole = async (role, guild, reason = 'Monty created a new role for you.') => {
-	const newRole = await guild.roles.create({
-		data: {
+	await guild.roles.create()
+	.then(async newRole => {
+		// for some reason creating the role with the data was returning 'new role'
+		// edit once created to have params required.
+		await newRole.edit({
 			name: role.name,
 			color: 'RANDOM',
-		},
-		reason: reason,
-	});
+		});
 
-	logger.info(`New Role created ${newRole}`);
+		logger.info(`New Role created ${newRole}`);
+	});
 };
 
 module.exports = {
