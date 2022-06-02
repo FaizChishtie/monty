@@ -3,7 +3,7 @@ Monty is a discord bot that helps you build and monitor your discord community i
 
 ## Todo
 
-[Monty GitHub project]]([https://github.com/users/FaizChishtie/projects/1)
+[Monty GitHub project]([https://github.com/users/FaizChishtie/projects/1)
 
 ## Setup & Run
 
