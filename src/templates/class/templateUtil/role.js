@@ -1,9 +1,9 @@
 const logger = require('../../../logger');
 
 const createRole = async (role, interaction, reason = 'Monty created a new role for you.') => {
-    logger.verbose(`Creating new role ${role.name}`);
+	logger.verbose(`Creating new role ${role.name}`);
 
-    const { guild } = interaction;
+	const { guild } = interaction;
 
 	await guild.roles.create({
 		reason,
