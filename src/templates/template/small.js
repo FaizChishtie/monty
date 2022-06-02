@@ -5,28 +5,28 @@ const Role = require('../class/Role');
 
 const template = new Template('tmp', 'small tmp');
 
-const tmpChannel = new Channel('TMP', 'text', true);
-
-// add channels
-
-template.addChannels([
-	tmpChannel,
-]);
-
 // add roles
 
 const tmp = new Role('TMP');
 
+template.addRole(tmp);
+
+// add channels
+
+const tmpChannel = new Channel('TMP', 'text', true);
+
 tmpChannel.addRole(tmp);
 
-template.addRole(tmp);
+template.addChannels([
+	tmpChannel,
+]);
 
 // add categories
 
 const tmpCategory = new Category('TMPC');
 
 tmpCategory.addChannels([
-	tmpChannel
+	tmpChannel,
 ]);
 
 template.addCategory(tmpCategory);

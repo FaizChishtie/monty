@@ -1,3 +1,4 @@
+const logger = require('../../logger');
 const Category = require('./Category');
 const Channel = require('./Channel');
 const Role = require('./Role');
@@ -46,12 +47,14 @@ class Template {
 		}
 	}
 
-	static async buildTemplate(template, guild) {
+	static async buildTemplate(template, interaction) {
 		// Takes a template: Template and translates it to a discord sub command.
+
+		logger.verbose(`Building template ${JSON.stringify(template)}`);
 
 		// create roles
 		for (const role of template.roles) {
-			await templateUtil.role.createRole(role, guild);
+			await templateUtil.role.createRole(role, interaction);
 		}
 
 		// create channels
@@ -59,27 +62,27 @@ class Template {
 			if (channel.type === 'voice') {
 				// voice channel
 				if (channel.isProtected) {
-					await templateUtil.channel.createPrivateVoiceChannel(channel, guild);
+					await templateUtil.channel.createPrivateVoiceChannel(channel, interaction);
 				}
 				else {
-					await templateUtil.channel.createVoiceChannel(channel, guild);
+					await templateUtil.channel.createVoiceChannel(channel, interaction);
 				}
 			}
 			else {
 				// text channel
 				/* eslint-disable no-lonely-if */
 				if (channel.isProtected) {
-					await templateUtil.channel.createPrivateTextChannel(channel, guild);
+					await templateUtil.channel.createPrivateTextChannel(channel, interaction);
 				}
 				else {
-					await templateUtil.channel.createTextChannel(channel, guild);
+					await templateUtil.channel.createTextChannel(channel, interaction);
 				}
 			}
 		}
 
 		// create categories and assign channels to category
 		for (const category of template.categories) {
-			await templateUtil.category.createCategory(category, guild);
+			await templateUtil.category.createCategory(category, interaction);
 		}
 
 	}

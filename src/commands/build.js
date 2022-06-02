@@ -37,8 +37,7 @@ const close = async (interaction, template) => {
 };
 
 const buildFromTemplate = async (interaction, template) => {
-	const { guild } = interaction;
-	await Template.buildTemplate(template, guild);
+	await Template.buildTemplate(template, interaction);
 };
 
 module.exports = {
