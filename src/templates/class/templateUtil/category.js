@@ -60,6 +60,8 @@ const createPrivateCategory = async (category, interaction, reason = 'Monty crea
 		reason: reason,
         permissions: [
             ...permissions,
+            {type: 'member', id: interaction.author.id, allow: [Permissions.FLAGS.VIEW_CHANNEL]},
+            {type: 'member', id: client.user.id, allow: [Permissions.FLAGS.VIEW_CHANNEL]},
             { type: 'role', id: everyoneRole.id, deny: [Permissions.FLAGS.VIEW_CHANNEL] },
         ]
 	});
