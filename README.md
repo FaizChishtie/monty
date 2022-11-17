@@ -1,6 +1,10 @@
 # monty
 Monty is a discord bot that helps you build and monitor your discord community in one click.
 
+## Todo
+
+[Monty GitHub project]([https://github.com/users/FaizChishtie/projects/1)
+
 ## Setup & Run
 
 ### Install
@@ -50,3 +54,7 @@ refactor: share logic between 4d3d3d3 and flarhgunnstow
 style: convert tabs to spaces
 test: ensure Tayne retains clothing
 ```
+
+## License
+
+Copyright Homeboard Technologies Inc., All rights reserved.

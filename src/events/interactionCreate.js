@@ -1,3 +1,4 @@
+const logger = require('../logger');
 const { client } = require('../setup');
 
 module.exports = {
@@ -13,7 +14,7 @@ module.exports = {
 			await command.execute(interaction);
 		}
 		catch (error) {
-			console.error(error);
+			logger.error(`There was an error while executing this command! ${error}`);
 			await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 		}
 	},

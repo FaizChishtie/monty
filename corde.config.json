@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/corde/schema/corde.schema.json",
+  "botPrefix": "",
+  "botTestId": "",
+  "channelId": "",
+  "cordeBotToken": "",
+  "guildId": "",
+  "testMatches": ["./test/commands/**"],
+  "project": "",
+  "timeout": 5000,
+  "exitOnFileReadingError": true,
+  "extensions": [".js", ".ts"],
+  "modulePathIgnorePatterns": ["(?:^|/)node_modules/"],
+  "rootDir": ""
+}
